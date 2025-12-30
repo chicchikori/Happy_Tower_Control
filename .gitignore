@@ -3,3 +3,4 @@ build
 /.clang-tidy
 /.clang-format
 /compile_flags.txt
+/.vscode

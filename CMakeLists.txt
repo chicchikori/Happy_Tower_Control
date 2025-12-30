@@ -11,7 +11,14 @@ FetchContent_Declare(
     GIT_TAG 3.0.1
 )
 
-FetchContent_MakeAvailable(SFML)
+FetchContent_Declare(
+    nlohmann
+    GIT_REPOSITORY https://github.com/nlohmann/json.git
+    GIT_TAG v3.12.0
+)
+
+
+FetchContent_MakeAvailable(SFML nlohmann)
 
 file(GLOB_RECURSE SRC_FILES "src/*.cpp")
 
@@ -26,7 +33,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE ${PROJECT_INCLUDE_DIR})
 
 target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_20)
 
-target_link_libraries(${PROJECT_NAME} PUBLIC sfml-graphics sfml-window sfml-system)
+target_link_libraries(${PROJECT_NAME} PUBLIC sfml-graphics sfml-window sfml-system nlohmann_json::nlohmann_json)
 
 file(
     COPY ${CMAKE_SOURCE_DIR}/Assets

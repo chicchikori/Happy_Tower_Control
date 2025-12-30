@@ -1,5 +1,6 @@
-#include <iostream>
+#include "src/app/Game/Game.h"
 int main()
 {
-    std::cout << "Hello, World\n";
+    App::Game game;
+    game.Run();
 }

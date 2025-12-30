@@ -1,0 +1,10 @@
+{
+    "json.schemas": [
+        {
+            "fileMatch": [
+                "Assets/Map/*.json"
+            ],
+            "url": "./Assets/Map/Schema/mapSchema.json"
+        }
+    ]
+}

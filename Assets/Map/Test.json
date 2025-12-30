@@ -1,7 +1,7 @@
 {
     "airports": {
         "name": "RJTT",
-        "centerPosition": {
+        "position": {
             "x": 0,
             "y": 0
         },
@@ -14,7 +14,7 @@
                     "y": 1500
                 },
                 "length": 3000,
-                "equipedILS": true
+                "ILSEquiped": true
             }
         ]
     },
@@ -39,9 +39,12 @@
                 "x": -10000,
                 "y": -5000
             },
-            "altitude": 14000,
+            "maxAlt": 24000,
+            "minAlt": 14000,
             "heading": 315,
-            "speed": 300
+            "headingVariant": 10,
+            "maxSpeed": 320,
+            "minSpeed": 280
         }
     ]
 }

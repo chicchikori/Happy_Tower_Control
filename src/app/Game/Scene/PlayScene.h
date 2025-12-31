@@ -1,6 +1,6 @@
 #pragma once
-#include "../../Core/Scene.h"
-#include "Map.h"
+#include <Core/Scene.h>
+#include "../Map/Map.h"
 #include "SFML/Window/Event.hpp"
 namespace App
 {
@@ -18,6 +18,6 @@ namespace App
         ~PlayScene() override = default;
 
     private:
-        Map map;
+        Map::Map map;
     };
 } // namespace App

@@ -1,5 +1,4 @@
 #include "PlayScene.h"
-#include "Map.h"
 
 namespace App
 {
@@ -11,8 +10,9 @@ namespace App
 
     };
 
-    void PlayScene::SceneUpdate() {
-
+    void PlayScene::SceneUpdate()
+    {
+        map.Update();
     };
 
     void PlayScene::SceneRender(sf::RenderWindow& window)

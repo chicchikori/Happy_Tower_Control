@@ -1,23 +1,25 @@
 {
-    "airports": {
-        "name": "RJTT",
-        "centerPosition": {
-            "x": 0,
-            "y": 0
-        },
-        "runways": [
-            {
-                "name": "09",
-                "heading": 90,
-                "thresholdPosition": {
-                    "x": 1500,
-                    "y": 1500
-                },
-                "length": 3000,
-                "equipedILS": true
-            }
-        ]
-    },
+    "airports": [
+        {
+            "name": "RJTT",
+            "position": {
+                "x": 0,
+                "y": 0
+            },
+            "runways": [
+                {
+                    "name": "09",
+                    "heading": 90,
+                    "thresholdPosition": {
+                        "x": 1500,
+                        "y": 1500
+                    },
+                    "length": 3000,
+                    "ILSEquiped": true
+                }
+            ]
+        }
+    ],
     "fixes": [
         {
             "name": "KAIHO",
@@ -39,9 +41,12 @@
                 "x": -10000,
                 "y": -5000
             },
-            "altitude": 14000,
+            "maxAlt": 14000,
+            "minAlt": 14000,
             "heading": 315,
-            "speed": 300
+            "headingVariant": 10,
+            "maxSpeed": 300,
+            "minSpeed": 300
         }
     ]
 }

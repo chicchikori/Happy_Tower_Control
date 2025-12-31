@@ -35,6 +35,7 @@ target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_20)
 
 target_link_libraries(${PROJECT_NAME} PUBLIC sfml-graphics sfml-window sfml-system nlohmann_json::nlohmann_json)
 
+file(REMOVE_RECURSE ${CMAKE_BINARY_DIR}/Assets)
 file(
     COPY ${CMAKE_SOURCE_DIR}/Assets
     DESTINATION ${CMAKE_BINARY_DIR}

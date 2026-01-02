@@ -2,6 +2,8 @@
 #include <Core/Scene.h>
 #include "../Map/Map.h"
 #include "SFML/Window/Event.hpp"
+#include "../Objects/Plane/PlaneHandler.h"
+
 
 namespace App
 {
@@ -21,5 +23,6 @@ namespace App
     private:
         sf::Clock clock;
         Map::Map map;
+        ::Game::PlaneHandler planeHandler;
     };
 } // namespace App

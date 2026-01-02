@@ -6,12 +6,11 @@
 #include <vector>
 
 
-
-#include "Objects\Airport.h"
-#include "Objects\Airspace.h"
-#include "Objects\Fix.h"
-#include "Objects\Runway.h"
-#include "Objects\Spawn.h"
+#include "../Objects/Map/Airport.h"
+#include "../Objects/Map/Airspace.h"
+#include "../Objects/Map/Fix.h"
+#include "../Objects/Map/Runway.h"
+#include "../Objects/Map/Spawn.h"
 #include "SFML/Graphics/RenderWindow.hpp"
 
 namespace Map
@@ -19,21 +18,23 @@ namespace Map
     class Map
     {
     public:
-        Map(const std::filesystem::path& path = "./Assets/Map/Test.json");
+        Map(App::Game& game, const std::filesystem::path& path = "./Assets/Map/Test.json");
 
         void Render(sf::RenderWindow& window);
 
-        void Update();
-        void Load(const std::filesystem::path& path);
+        void Update(float delta);
+
+        void Load(App::Game& game, const std::filesystem::path& path);
+
         [[nodiscard]] std::vector<Airport>& GetAirportInfo();
         [[nodiscard]] std::vector<Spawn>& GetSpawns();
-        [[nodiscard]] std::vector<Airspace>& GetAirspace();
+        [[nodiscard]] std::vector<Airspaces>& GetAirspaces();
         [[nodiscard]] std::vector<Fix>& GetFixies();
 
     private:
-        std::vector<Airport> airport;
+        std::vector<Airport> airports;
         std::vector<Spawn> spawns;
-        std::vector<Airspace> airspaces;
+        std::vector<Airspaces> airspaces;
         std::vector<Fix> fixes;
         std::vector<Runway> runways;
     };

@@ -2,6 +2,7 @@
 #include <Core/Scene.h>
 #include "../Map/Map.h"
 #include "SFML/Window/Event.hpp"
+
 namespace App
 {
     class PlayScene : public Core::Scene
@@ -18,6 +19,7 @@ namespace App
         ~PlayScene() override = default;
 
     private:
+        sf::Clock clock;
         Map::Map map;
     };
 } // namespace App

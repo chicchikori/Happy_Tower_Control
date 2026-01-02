@@ -3,13 +3,15 @@
 #include <Core/Entity.h>
 #include "nlohmann/json.hpp"
 
-namespace Map {
-    class Spawn : public Core::Entity
+#include <Core/Point.h>
+namespace Map
+{
+    class Spawn : public Game::Point
     {
     public:
-        Spawn(const nlohmann::basic_json<>& json);
+        Spawn(App::Game& game, const nlohmann::basic_json<>& json);
         void Render(sf::RenderWindow& window) override;
-        void Update() override;
+        void Update(float delta) override;
 
     private:
         sf::Vector2i pos;
@@ -20,4 +22,4 @@ namespace Map {
         int maxSpeed;
         int minSpeed;
     };
-}
+} // namespace Map

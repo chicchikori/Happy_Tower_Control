@@ -2,17 +2,18 @@
 
 namespace App
 {
-    PlayScene::PlayScene(Game& game) : Core::Scene(game)
+    PlayScene::PlayScene(Game& game) : Core::Scene(game), map(game)
     {
     }
 
-    void PlayScene::SceneEvent(sf::Event& event) {
-
+    void PlayScene::SceneEvent(sf::Event& event)
+    {
     };
 
     void PlayScene::SceneUpdate()
     {
-        map.Update();
+        float dt = clock.restart().asSeconds();
+        map.Update(dt);
     };
 
     void PlayScene::SceneRender(sf::RenderWindow& window)

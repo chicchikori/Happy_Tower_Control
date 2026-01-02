@@ -3,10 +3,12 @@
 #include <utility>
 #include "../../Core/Scene.h"
 
-#include "PlayScene.h"
 #include "SFML/Graphics/RenderWindow.hpp"
+#include "SFML/System/Vector2.hpp"
 #include "SFML/Window/Event.hpp"
 #include "SFML/Window/VideoMode.hpp"
+#include "Scene/PlayScene.h"
+
 namespace App
 {
     Game::Game()
@@ -29,7 +31,10 @@ namespace App
     {
         currentScene = std::move(scene);
     }
-
+    sf::Vector2u Game::GetWindowSize()
+    {
+        return window.getSize();
+    }
     void Game::Event()
     {
         while (auto event = window.pollEvent())

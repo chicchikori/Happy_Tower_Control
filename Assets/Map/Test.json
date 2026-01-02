@@ -3,18 +3,20 @@
         {
             "name": "RJTT",
             "position": {
-                "x": 0,
-                "y": 0
+                "x": 1000,
+                "y": 10000
             },
             "runways": [
                 {
-                    "name": "09",
-                    "heading": 90,
+                    "name": "06",
                     "thresholdPosition": {
-                        "x": 1500,
-                        "y": 1500
+                        "x": 0,
+                        "y": 0
                     },
-                    "length": 3000,
+                    "oppositeThresholdPosition": {
+                        "x": 3000,
+                        "y": 0
+                    },
                     "ILSEquiped": true
                 }
             ]
@@ -24,15 +26,31 @@
         {
             "name": "KAIHO",
             "position": {
-                "x": 10000,
+                "x": 0,
                 "y": 1000
             }
         }
     ],
     "airspace": [
         {
-            "type": "circle",
-            "radius": 10000
+            "space": [
+                {
+                    "x": 1000,
+                    "y": -1000
+                },
+                {
+                    "x": -1000,
+                    "y": -1000
+                },
+                {
+                    "x": -2000,
+                    "y": 1000
+                },
+                {
+                    "x": 3000,
+                    "y": 1000
+                }
+            ]
         }
     ],
     "spawns": [

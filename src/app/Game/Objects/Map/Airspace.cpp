@@ -1,5 +1,4 @@
 #include "Airspace.h"
-#include <iostream>
 #include "SFML/Graphics/Color.hpp"
 #include "SFML/Graphics/PrimitiveType.hpp"
 #include "SFML/System/Vector2.hpp"
@@ -26,7 +25,6 @@ namespace Map
         for (int i = 0; i < airspaceInW.size(); i++)
         {
             airspaceShape[i].position = Round(WorldToWindow(airspaceInW[i]));
-            std::cout << airspaceInW[i].x << ":" << airspaceInW[i].y << "\n";
             airspaceShape[i].color = sf::Color::White;
         }
         airspaceShape[airspaceInW.size()].position = Round(WorldToWindow(airspaceInW[0]));

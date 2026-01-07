@@ -1,18 +1,17 @@
 #pragma once
 #include <Core/Entity.h>
+#include "PlaneData.h"
 #include "SFML/Graphics/RectangleShape.hpp"
 #include "SFML/Graphics/RenderWindow.hpp"
-#include "SFML/System/Angle.hpp"
 #include "SFML/System/Vector2.hpp"
 #include "SFML/Window/Event.hpp"
 
 namespace Game
 {
-    class Plane : public Core::Entity
+    class Plane : private Core::Entity
     {
     public:
-        Plane(App::Game& game, int speed, int targetSpeed, int heading, int targetHeading, int altitude,
-              int targetAltitude, sf::Vector2f position);
+        Plane(App::Game& game, int speed, int heading, int altitude, sf::Vector2f position);
         void Event(sf::Event& event) override;
         void Update(float delta) override;
         void Render(sf::RenderWindow& window) override;
@@ -22,16 +21,15 @@ namespace Game
         void SetAltitude(int altitude);
 
     private:
-        float speed;
-        float targetSpeed;
-        sf::Angle heading;
-        sf::Angle targetHeading;
-        float altitude;
-        float targetAltitude;
-            
+        PlaneData data;
+        int planeID;
+        
+        sf::RectangleShape planeShape;
 
-        sf::Vector2f position;
+        void MouseLeftReleased(const sf::Event::MouseButtonPressed* mouseEvent);
 
-        sf::RectangleShape plane;
+        static sf::Vector2f planeRectOutlineThickness;
+
+        static float planeRectSize;
     };
 } // namespace Game

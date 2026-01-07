@@ -2,12 +2,13 @@
 
 namespace App
 {
-    PlayScene::PlayScene(Game& game) : Core::Scene(game), map(game),planeHandler(game)
+    PlayScene::PlayScene(Game& game) : Core::Scene(game), map(game), planeHandler(game)
     {
     }
 
     void PlayScene::SceneEvent(sf::Event& event)
     {
+        planeHandler.Event(event);
     };
 
     void PlayScene::SceneUpdate()

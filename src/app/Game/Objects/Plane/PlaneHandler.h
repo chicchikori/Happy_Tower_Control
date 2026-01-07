@@ -16,6 +16,10 @@ namespace Game
         void Event(sf::Event& event) override;
         void Render(sf::RenderWindow& window) override;
 
+        static Plane* selectedPlane;
+        static Plane* selectedTempPlane;
+        static bool selectedPlaneChanged;
+
     private:
         std::vector<Plane> planes;
     };

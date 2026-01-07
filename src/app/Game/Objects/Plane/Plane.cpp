@@ -1,37 +1,79 @@
 #include "Plane.h"
-#include <cmath>
+#include "PlaneHandler.h"
 #include "SFML/Graphics/Color.hpp"
 #include "SFML/Graphics/RenderWindow.hpp"
 #include "SFML/System/Vector2.hpp"
+#include "SFML/Window/Event.hpp"
+#include "SFML/Window/Mouse.hpp"
+
+#define PLANE_RECT_OUTLINE_THICKNESS (2)
+#define PLANE_RECT_SIZE (sf::Vector2f(4, 4))
 
 
 namespace Game
 {
-    Plane::Plane(App::Game& game, int speed, int targetSpeed, int heading, int targetHeading, int altitude,
-                 int targetAltitude, sf::Vector2f position) :
-        Core::Entity(game), speed((float)speed), targetSpeed((float)targetSpeed), heading(sf::degrees((float)heading)),
-        targetHeading(sf::degrees((float)targetHeading)), altitude((float)altitude),
-        targetAltitude((float)targetAltitude), position(position)
+    sf::Vector2f Plane::planeRectOutlineThickness(4, 4);
+    float Plane::planeRectSize(2);
+
+    Plane::Plane(App::Game& game, int speed, int heading, int altitude, sf::Vector2f position) :
+        Core::Entity(game), data(game, speed, heading, altitude, position)
     {
-        plane.setSize({4, 4});
-        plane.setFillColor(sf::Color::Transparent);
-        plane.setOutlineColor(sf::Color::Green);
-        plane.setOutlineThickness(2);
+        planeShape.setSize(planeRectOutlineThickness);
+        planeShape.setFillColor(sf::Color::Transparent);
+        planeShape.setOutlineColor(sf::Color::Green);
+        planeShape.setOutlineThickness(planeRectSize);
     }
 
     void Plane::Event(sf::Event& event)
     {
+        if (const auto mouseEvent = event.getIf<sf::Event::MouseButtonPressed>())
+        {
+            if (mouseEvent->button == sf::Mouse::Button::Left)
+            {
+                MouseLeftReleased(mouseEvent);
+            }
+        }
+    }
+
+    void Plane::MouseLeftReleased(const sf::Event::MouseButtonPressed* mouseEvent)
+    {
+        sf::Vector2f mouseWorldPos = mGame.GetWindow().mapPixelToCoords(mouseEvent->position);
+        if (planeShape.getGlobalBounds().contains(mouseWorldPos))
+        {
+            if (PlaneHandler::selectedPlaneChanged)
+            {
+                return;
+            }
+            if (PlaneHandler::selectedTempPlane != this)
+            {
+                PlaneHandler::selectedTempPlane = this;
+                PlaneHandler::selectedPlaneChanged = true;
+            }
+            else
+            {
+                PlaneHandler::selectedTempPlane = nullptr;
+            }
+        }
     }
 
     void Plane::Update(float delta)
     {
-        position +=
-            sf::Vector2f(std::sin(heading.asRadians()), std::cos(heading.asRadians())) * delta * speed * 0.5144444444444444444444444F;
-        plane.setPosition(WorldToWindow((sf::Vector2i)position));
+        if (PlaneHandler::selectedPlane == this)
+        {
+            planeShape.setOutlineColor(sf::Color::Red);
+        }
+        else
+        {
+            planeShape.setOutlineColor(sf::Color::Green);
+        }
+        data.Update(delta);
+        planeShape.setPosition(Round(WorldToWindow((sf::Vector2i)data.GetPosition())));
     }
 
     void Plane::Render(sf::RenderWindow& window)
     {
-        window.draw(plane);
+        window.draw(planeShape);
     }
+
+
 } // namespace Game

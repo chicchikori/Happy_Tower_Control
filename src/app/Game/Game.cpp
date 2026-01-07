@@ -14,6 +14,7 @@ namespace App
     Game::Game()
     {
         window = sf::RenderWindow(sf::VideoMode({1000, 800}), "test");
+        window.setVerticalSyncEnabled(true);
         currentScene = std::make_unique<PlayScene>(PlayScene(*this));
     }
 
@@ -45,6 +46,11 @@ namespace App
             }
             currentScene->SceneEvent(*event);
         }
+    }
+
+    const sf::RenderWindow& Game::GetWindow() const
+    {
+        return window;
     }
 
     void Game::Update()

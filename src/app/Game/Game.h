@@ -20,6 +20,8 @@ namespace App
 
         sf::Vector2u GetWindowSize();
 
+        const sf::RenderWindow& GetWindow() const;
+
     private:
         sf::RenderWindow window;
 
